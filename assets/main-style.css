@@ -1,0 +1,40 @@
+/* General style */
+header {
+    color: #fff;
+    background-color: #222;
+    height: 60px;
+}
+header .container {
+    display: flex;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    align-items: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    height: 100%;
+}
+header .container p {
+    margin: 0 0 0 24px;
+}
+article {
+    width: 33%;
+    padding: 10px;
+    display: inline-block;
+}
+article div {
+    padding: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+article div.active {
+    background-color: crimson;
+}
+article div.done {
+    background-color: lightgreen;
+}
+.cards-wrapper .alert.alert-success {
+    display: none;
+}
