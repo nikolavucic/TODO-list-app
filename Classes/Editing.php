@@ -11,12 +11,17 @@ class Editing {
 		$description = $_POST['description'];
 		$timestamp = date("Y-m-d");
 
-		$sql = "INSERT INTO `list` (`name`, `descripton`, `state`, `date`)
-        VALUES ( '$name', '$description', 'active', '$timestamp')";
+		// Checking if card is empty
+		if( $name != '' || $description != '' ) {
 
-		mysqli_query( $connection->conn, $sql );
+			$sql = "INSERT INTO `list` (`name`, `descripton`, `state`, `date`)
+        			VALUES ( '$name', '$description', 'active', '$timestamp')";
 
-		mysqli_close( $connection->conn );
+			mysqli_query( $connection->conn, $sql );
+
+			mysqli_close( $connection->conn );
+
+		}
 
 		header('Location: ' . 'http://localhost/todo_list_app/' );
 	}
