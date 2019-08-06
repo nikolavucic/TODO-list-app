@@ -4,11 +4,28 @@ require_once('MySQLconnect.php');
 
 class Listing {
 
-	public function __construct() {
+	public function __construct( $search_param, $filter_param ) {
 
 		$connection = new MySQLconnect();
 
+		// Query for all rows from table
 		$rows = "SELECT * FROM `list`";
+
+		// Query with search form conditions
+		if( $search_param !== '' ) {
+
+			if( $filter_param === 'search-all' ) {
+				$rows = "SELECT * FROM `list` WHERE `name` LIKE '%$search_param%' OR `descripton` LIKE '%$search_param%'";
+			}
+			if( $filter_param === 'search-title' ) {
+				$rows = "SELECT * FROM `list` WHERE `name` LIKE '%$search_param%'";
+			}
+			if( $filter_param === 'search-description' ) {
+				$rows = "SELECT * FROM `list` WHERE `descripton` LIKE '%$search_param%'";
+			}
+
+		}
+
 		$result = $connection->conn->query($rows);
 
 		if ( $result->num_rows > 0 ) {

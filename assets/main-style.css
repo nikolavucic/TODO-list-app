@@ -19,6 +19,25 @@ header .container {
 header .container p {
     margin: 0 0 0 24px;
 }
+form .md-form {
+    margin-top: 50px;
+}
+form .md-form .md-form__radio-buttons {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-justify-content: space-around;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    padding-bottom: 6px;
+}
+form.reset-cards-form {
+    padding-top: 6px;
+    text-align: right;
+}
 article {
     width: 33%;
     padding: 10px;

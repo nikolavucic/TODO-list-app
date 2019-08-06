@@ -29,6 +29,7 @@ require_once('Classes/Listing.php');
         <main>
             <div class="container">
 
+                <!-- Add Card Form -->
                 <form class="form" action="Classes/Editing.php" method="post">
                     <div class="form-group">
                         <label for="name">Title</label>
@@ -41,9 +42,56 @@ require_once('Classes/Listing.php');
                     <button type="submit" class="btn btn-primary">Add</button>
                 </form>
 
-                <div class="cards-wrapper" style="">
+                <!-- Search Form -->
+                <form class="form" action="index.php" method="post">
+                    <div class="md-form">
+                        <div class="md-form__radio-buttons">
+                            <!-- Group of default radios - option 1 -->
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="search-all" value="search-all" name="groupOfRadios" checked>
+                                <label class="custom-control-label" for="search-all">Search everything</label>
+                            </div>
+
+                            <!-- Group of default radios - option 2 -->
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="search-title" value="search-title" name="groupOfRadios">
+                                <label class="custom-control-label" for="search-title">Search by card title</label>
+                            </div>
+
+                            <!-- Group of default radios - option 3 -->
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="search-description" value="search-description" name="groupOfRadios">
+                                <label class="custom-control-label" for="search-description">Search by card description</label>
+                            </div>
+                        </div>
+
+                        <input class="form-control" type="text" name="search_param" placeholder="Search" aria-label="Search">
+
+                    </div>
+                </form>
+
+                <!-- Reset Cards Form -->
+                <form class="form reset-cards-form" action="index.php" method="post">
+                    <button type="submit" class="btn btn-primary" data-command="reset">Reset all Cards</button>
+                </form>
+
+                <?php
+                if ( isset( $_POST[ 'search_param' ] ) ) {
+	                $search_param = $_POST[ 'search_param' ];
+                } else {
+	                $search_param = '';
+                }
+
+                if ( isset( $_POST[ 'groupOfRadios' ] ) ) {
+	                $filter_param = $_POST[ 'groupOfRadios' ];
+                } else {
+	                $filter_param = 'search-all';
+                }
+                ?>
+
+                <div class="cards-wrapper">
                     <?php
-                    new Listing;
+                    new Listing( $search_param, $filter_param );
                     ?>
                 </div>
 
